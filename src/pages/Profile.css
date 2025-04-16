@@ -1,0 +1,39 @@
+.profile-container {
+  width: 350px;
+  margin: auto;
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-container input {
+  width: 90%;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.profile-container button {
+  padding: 10px;
+  margin: 5px;
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.profile-display {
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 5px;
+}
+
+.profile-container button:hover {
+  background: #0056b3;
+}
+

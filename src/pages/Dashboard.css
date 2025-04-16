@@ -1,0 +1,18 @@
+.dashboard-container {
+  margin-left: 260px; /* To avoid overlapping with sidebar */
+  padding: 20px;
+}
+
+.systems {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.system-box {
+  background: #ddd;
+  padding: 30px;
+  text-align: center;
+  border-radius: 8px;
+  font-weight: bold;
+}

@@ -1,0 +1,39 @@
+.room-matrix-container {
+    background-image: url('./assets/room_matrix.png'); /* Adjust path if needed */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;     /* Vertical center */
+    justify-content: center; /* Horizontal center */
+    flex-direction: column;
+    padding: 2rem;
+  }
+  
+  .room-matrix {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.5); /* Optional dark transparent bg */
+    padding: 2rem;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .room-matrix-item {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #333;
+  }
+  
+  .room-matrix-container h2 {
+    color: white;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 2px black;
+  }
+  

@@ -1,0 +1,58 @@
+.binsight-container {
+  padding: 40px;
+  background-image: url('./assets/binsight.png'); /* Correct path to the public folder */
+  background-size: cover;
+  background-position: top center; /* Ensure the background is positioned at the top */
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Ensures the background stays fixed during scrolling */
+  min-height: 100vh; /* Full viewport height */
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Adjusts the positioning of content to the top */
+}
+
+.chart-card {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 25px;
+  margin: 20px 0;
+  border-radius: 16px;
+  width: 95%;
+  max-width: 720px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chart-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.toggle-buttons {
+  margin: 20px 0;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.toggle-buttons button {
+  padding: 10px 24px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background-color: #0088FE;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.toggle-buttons button:hover {
+  background-color: #006edc;
+  transform: scale(1.05);
+}
+
+.toggle-buttons .active {
+  background-color: #00C49F;
+}

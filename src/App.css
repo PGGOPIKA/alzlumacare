@@ -1,0 +1,69 @@
+/* App.css */
+.app {
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #000;
+}
+
+.center-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center-title h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #000;
+  text-shadow: 2px 2px 8px #ffffff;
+}
+
+.menu-toggle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #000;
+  z-index: 2;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -220px;
+  width: 200px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 60px 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+  transition: left 0.3s ease-in-out;
+  z-index: 1;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar a {
+  display: block;
+  margin: 20px 0;
+  text-decoration: none;
+  color: #333;
+  font-size: 1.1rem;
+}
+.high-contrast {
+  background-color: black !important;
+  color: yellow !important;
+}
+
+.large-fonts {
+  font-size: 1.4em;
+}

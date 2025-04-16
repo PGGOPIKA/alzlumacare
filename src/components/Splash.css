@@ -1,0 +1,18 @@
+.splash-container {
+    background: url("../assets/Alzheimer's Care.png") no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .title {
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px 20px;
+    border-radius: 8px;
+  }
+  
