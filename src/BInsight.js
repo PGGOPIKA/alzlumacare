@@ -8,7 +8,7 @@ import './BInsight.css';
 import binsightImage from './assets/binsight.png'; // Import the image
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']; // Color palette for pie chart
-
+ 
 function BInsight() {
   const [timeframe, setTimeframe] = useState('daily');
   const [chartType, setChartType] = useState('pie'); // Pie chart for emotion
