@@ -1,69 +1,80 @@
-/* App.css */
+/* App Layout */
 .app {
-  height: 100vh;
-  width: 100%;
+  display: flex;
+  min-height: 100vh;
+  background-image: url('./alzheimer-care.png'); /* Ensure the path is correct */
   background-size: cover;
   background-position: center;
-  position: relative;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #000;
+  background-repeat: no-repeat;
+  flex-direction: column;
+  position: relative; /* Make sure the menu toggle is above the content */
 }
 
-.center-title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.center-title h1 {
-  font-size: 4rem;
-  font-weight: bold;
-  color: #000;
-  text-shadow: 2px 2px 8px #ffffff;
-}
-
-.menu-toggle {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 2rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #000;
-  z-index: 2;
-}
-
+/* Sidebar Styles */
 .sidebar {
   position: fixed;
   top: 0;
-  left: -220px;
-  width: 200px;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.95);
-  padding: 60px 20px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
-  transition: left 0.3s ease-in-out;
-  z-index: 1;
-}
-
-.sidebar.open {
   left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  color: white;
+  padding: 20px;
+  transition: transform 0.3s ease;
+  transform: translateX(-100%); /* Hidden by default */
+  z-index: 100; /* Ensure the sidebar appears above other elements */
 }
 
-.sidebar a {
-  display: block;
-  margin: 20px 0;
-  text-decoration: none;
-  color: #333;
-  font-size: 1.1rem;
-}
-.high-contrast {
-  background-color: black !important;
-  color: yellow !important;
+/* Show Sidebar when Open */
+.sidebar.open {
+  transform: translateX(0); /* When open, show the sidebar */
 }
 
-.large-fonts {
-  font-size: 1.4em;
+/* Sidebar Button */
+.app .menu-toggle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.6); /* Background for better visibility */
+  color: white;
+  font-size: 30px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  z-index: 200; /* Ensure the button is above the sidebar and other elements */
+  border-radius: 5px;
+}
+
+.menu-toggle:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+}
+
+/* Sidebar Button Styling */
+.app .sidebar button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  margin: 10px 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.app .sidebar button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* App Content Styling */
+.app .app-content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.7); /* Light background to contrast with content */
+  border-radius: 8px;
+  margin-left: 260px; /* Adjust according to the sidebar width */
+}
+
+/* Optional: Add padding to the content for better visibility */
+.app .app-content {
+  padding-left: 20px;
+  padding-right: 20px;
 }

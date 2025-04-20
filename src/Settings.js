@@ -1,13 +1,22 @@
-// src/Settings.js
 import React from 'react';
 import { useSettings } from './SettingsContext'; // ✅ Correctly import the hook
 
 function Settings() {
-  const { settings, handleToggle, handleSelect } = useSettings(); // ✅ Use the settings from context
+  const { settings, handleToggle, handleSelect, resetSettings } = useSettings(); // ✅ Use the settings from context
+
+  // Function to clear/reset settings to their default values
+  const handleClearSettings = () => {
+    resetSettings();  // Call the reset function to clear settings
+  };
 
   return (
     <div className="settings-container">
       <h2>Settings</h2>
+
+      {/* Clear Settings Button */}
+      <button onClick={handleClearSettings} style={{ padding: '10px 20px', backgroundColor: '#f44336', color: 'white', border: 'none', borderRadius: '5px', marginBottom: '20px' }}>
+        Clear Settings
+      </button>
 
       <section>
         <h3>🔔 Notification Preferences</h3>
@@ -83,7 +92,6 @@ function Settings() {
             Hydration / Meal Reminders
           </label>
         </div>
-
       </section>
 
       {/* Alert Tone and Reminder Time */}

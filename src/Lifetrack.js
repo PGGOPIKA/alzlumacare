@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './LifeTrack.css'; // Make sure this file contains background styling
+import LifeTrackimage from './assets/lifetrack.png'; // Import the image
 
 const LifeTrack = () => {
   const [sensorData, setSensorData] = useState({
@@ -36,7 +37,7 @@ const LifeTrack = () => {
   }, []);
 
   return (
-    <div className="life-track-container">
+    <div className="life-track-container" style={{ backgroundImage: `url(${LifeTrackimage})` }}>
       <h1 className="life-track-title">LIFE TRACK</h1>
 
       <div className="sensor-line">

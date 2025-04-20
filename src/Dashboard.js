@@ -1,32 +1,33 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import dashboardImage from './dashboard.png'; // your provided image
-import './Dashboard.css'; // add styling here
+import { useSettings } from './SettingsContext'; // Assuming this is the context for accessing settings
 
-function Dashboard() {
-  const navigate = useNavigate();
+const Dashboard = () => {
+  const { settings } = useSettings(); // Accessing the settings context
 
   return (
-    <div
-      className="dashboard"
-      style={{
-        backgroundImage: `url(${dashboardImage})`,
-        backgroundSize: 'cover',
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: '#fff',
-      }}
-    >
-      <h1 style={{ fontSize: '3rem', marginBottom: '2rem' }}>MENU</h1>
-      <button className="menu-btn" onClick={() => navigate('/medicare')}>MEDICARE</button>
-      <button className="menu-btn" onClick={() => navigate('/lifetrack')}>LIFETRACK</button>
-      <button className="menu-btn" onClick={() => navigate('/binsight')}>B INSIGHT</button>
-      <button className="menu-btn" onClick={() => navigate('/roommatrix')}>ROOM MATRIX</button>
+    <div className="dashboard" style={{ 
+      backgroundImage: `url('./alzheimer-care.png')`, 
+      backgroundSize: 'cover', 
+      minHeight: '100vh',
+      display: 'flex', 
+      justifyContent: 'center', 
+      alignItems: 'center', 
+      color: 'black',
+    }}>
+      <h1 style={{
+        fontSize: '4rem',
+        fontWeight: 'bold',
+        textAlign: 'center',
+      }}>
+        {settings.language === 'Malayalam'
+          ? 'ആൽസൈമർ പരിചരണം'
+          : settings.language === 'Hindi'
+          ? 'अल्जाइमर देखभाल'
+          : 'ALZLUMACARE'}
+      </h1>
     </div>
   );
-}
+};
 
 export default Dashboard;

@@ -1,10 +1,9 @@
+
 import React, { useState } from 'react';
 import './Login.css';
-
 function Login({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
   const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -15,7 +14,6 @@ function Login({ onLogin }) {
       alert('Please enter both username and password');
     }
   };
-
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmit}>
@@ -39,5 +37,4 @@ function Login({ onLogin }) {
     </div>
   );
 }
-
 export default Login;
