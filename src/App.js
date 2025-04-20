@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { HashRouter as Router, Routes, Route, Navigate, Outlet, useNavigate } from 'react-router-dom'; // <-- Added Outlet here
+import React, { useState, useEffect } from 'react';
+import { HashRouter as Router, Routes, Route, Navigate, Outlet, useNavigate } from 'react-router-dom';
 import { SettingsProvider } from './SettingsContext';
 import Login from './Login';
 import Dashboard from './Dashboard';
@@ -12,26 +12,20 @@ import Settings from './Settings';
 import './App.css';
 import backgroundImage from './alzheimer-care.png';
 
+// 🔔 Import Firebase setup
+import { requestPermission, listenForMessages } from './firebase';
 
-// Sidebar layout with theme/language from settings
 function MainAppLayout({ onLogout }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false); // Manage menu toggle
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   return (
     <div className="app">
-      <button className="menu-toggle" onClick={() => setSidebarOpen(!sidebarOpen)}>
-        ☰
-      </button>
+      <button className="menu-toggle" onClick={() => setSidebarOpen(!sidebarOpen)}>☰</button>
       <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
-        {/* Profile Button */}
         <button onClick={() => navigate('/profile')}>👤 Profile</button>
-
-        {/* Menu Toggle */}
-        <button onClick={() => setMenuOpen(!menuOpen)}>
-          📋 Menu {menuOpen ? '▲' : '▼'}
-        </button>
+        <button onClick={() => setMenuOpen(!menuOpen)}>📋 Menu {menuOpen ? '▲' : '▼'}</button>
         {menuOpen && (
           <div className="menu-options">
             <button onClick={() => navigate('/medicare')}>Medicare</button>
@@ -40,15 +34,10 @@ function MainAppLayout({ onLogout }) {
             <button onClick={() => navigate('/roommatrix')}>Room Matrix</button>
           </div>
         )}
-
-        {/* Settings Button */}
         <button onClick={() => navigate('/settings')}>⚙️ Settings</button>
-        
-        {/* Logout Button */}
         <button onClick={onLogout}>🚪 Logout</button>
       </div>
 
-      {/* Render the page content */}
       <div style={{ padding: '1rem' }}>
         <Outlet />
       </div>
@@ -58,6 +47,14 @@ function MainAppLayout({ onLogout }) {
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+
+  // 🔔 Call FCM on load (after login)
+  useEffect(() => {
+    if (loggedIn) {
+      requestPermission();
+      listenForMessages();
+    }
+  }, [loggedIn]);
 
   return (
     <SettingsProvider>
