@@ -1,11 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getMessaging, getToken, onMessage } from "firebase/messaging";
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDK_-Cw97Bp1-aZzYF9J4gG-rn48T9QuGM",
   authDomain: "alzlumacare.firebaseapp.com",
@@ -18,4 +16,27 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const analytics = getAnalytics(app); // optional, remove if not needed
+
+const messaging = getMessaging(app);
+
+// ✅ Export these functions so they can be imported in App.js
+export const requestPermission = async () => {
+  console.log("Requesting notification permission...");
+  const permission = await Notification.requestPermission();
+  if (permission === 'granted') {
+    const token = await getToken(messaging, {
+      vapidKey: 'YOUR_PUBLIC_VAPID_KEY_HERE' // Replace with your actual VAPID key
+    });
+    console.log("Notification permission granted. Token:", token);
+  } else {
+    console.log("Notification permission denied.");
+  }
+};
+
+export const listenForMessages = () => {
+  onMessage(messaging, (payload) => {
+    console.log("Message received. ", payload);
+    // You can show a custom toast or notification here
+  });
+};
