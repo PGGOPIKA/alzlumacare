@@ -1,18 +1,10 @@
 {
   "files": {
-    "main.css": "/alzlumacare/static/css/main.134b5d6c.css",
-    "main.js": "/alzlumacare/static/js/main.960b06fc.js",
-    "static/media/alzheimer-care.png": "/alzlumacare/static/media/alzheimer-care.560629f5a955961dff17.png",
-    "static/media/medicare.png": "/alzlumacare/static/media/medicare.7d9110803a86f49f697c.png",
-    "static/media/room_matrix.png": "/alzlumacare/static/media/room_matrix.083269eefbdb4decd79f.png",
-    "static/media/lifetrack.png": "/alzlumacare/static/media/lifetrack.3469cc1e0066b5e821e8.png",
-    "static/media/binsight.png": "/alzlumacare/static/media/binsight.2fe1fe5df575d8bb24a6.png",
+    "main.js": "/alzlumacare/static/js/main.5e8da66e.js",
     "index.html": "/alzlumacare/index.html",
-    "main.134b5d6c.css.map": "/alzlumacare/static/css/main.134b5d6c.css.map",
-    "main.960b06fc.js.map": "/alzlumacare/static/js/main.960b06fc.js.map"
+    "main.5e8da66e.js.map": "/alzlumacare/static/js/main.5e8da66e.js.map"
   },
   "entrypoints": [
-    "static/css/main.134b5d6c.css",
-    "static/js/main.960b06fc.js"
+    "static/js/main.5e8da66e.js"
   ]
 }
