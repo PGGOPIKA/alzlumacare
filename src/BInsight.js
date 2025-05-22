@@ -5,25 +5,23 @@ import {
   BarChart, Bar, Cell
 } from 'recharts';
 import './BInsight.css';
-import binsightImage from './assets/binsight.png'; // Import the image
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']; // Color palette for pie chart
- 
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+
 function BInsight() {
   const [timeframe, setTimeframe] = useState('daily');
-  const [chartType, setChartType] = useState('pie'); // Pie chart for emotion
+  const [chartType, setChartType] = useState('pie');
   const [activityData, setActivityData] = useState([]);
   const [sleepData, setSleepData] = useState([]);
   const [emotionData, setEmotionData] = useState([]);
 
-  // Generate simulated data every 30 seconds
   useEffect(() => {
     const fetchLiveData = async () => {
       try {
-        const res = await fetch('/api/live-data'); // Your backend endpoint
+        const res = await fetch('http://192.168.109.44:3000/api/live-data');
         const data = await res.json();
 
-        setActivityData(data.activity); // [{time, walking, resting, ...}]
+        setActivityData(data.activity);
         setSleepData([
           { type: 'Deep Sleep', value: data.sleep.deep },
           { type: 'Light Sleep', value: data.sleep.light },
@@ -43,16 +41,11 @@ function BInsight() {
     fetchLiveData();
     const interval = setInterval(fetchLiveData, 30000);
     return () => clearInterval(interval);
-  }, []); // Empty dependency to run only once when the component mounts
+  }, []);
 
   return (
     <div className="binsight-container">
       <h2>Behavioral Insight ({timeframe.toUpperCase()})</h2>
-
-      {/* Adding Image to BInsight */}
-      <div className="binsight-image">
-        <img src={binsightImage} alt="Behavioral Insights" />
-      </div>
 
       <div className="toggle-buttons">
         <button onClick={() => setTimeframe('daily')} className={timeframe === 'daily' ? 'active' : ''}>Daily</button>
@@ -75,7 +68,7 @@ function BInsight() {
         </LineChart>
       </div>
 
-      {/* 📊 Emotion Distribution (Pie chart) */}
+      {/* 📊 Emotion Distribution */}
       <div className="chart-card">
         <h3>📊 Emotion Distribution</h3>
         <button onClick={() => setChartType(chartType === 'pie' ? 'radar' : 'pie')}>
@@ -83,15 +76,7 @@ function BInsight() {
         </button>
         {chartType === 'pie' ? (
           <PieChart width={400} height={300}>
-            <Pie
-              data={emotionData}
-              dataKey="value"
-              nameKey="type"
-              cx="50%"
-              cy="50%"
-              outerRadius={100}
-              label
-            >
+            <Pie data={emotionData} dataKey="value" nameKey="type" cx="50%" cy="50%" outerRadius={100} label>
               {emotionData.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
@@ -111,7 +96,7 @@ function BInsight() {
         )}
       </div>
 
-      {/* 🌙 Sleep Summary (Bar chart) */}
+      {/* 🌙 Sleep Summary */}
       <div className="chart-card">
         <h3>🌙 Sleep Summary</h3>
         <BarChart width={600} height={300} data={sleepData}>

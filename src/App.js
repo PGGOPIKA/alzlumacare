@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { HashRouter as Router, Routes, Route, Navigate, Outlet, useNavigate } from 'react-router-dom';
 import { SettingsProvider } from './SettingsContext';
 import Login from './Login';
@@ -11,9 +11,6 @@ import Profile from './Profile';
 import Settings from './Settings';
 import './App.css';
 import backgroundImage from './alzheimer-care.png';
-
-// 🔔 Import Firebase setup
-import { requestPermission, listenForMessages } from './firebase';
 
 function MainAppLayout({ onLogout }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -47,14 +44,6 @@ function MainAppLayout({ onLogout }) {
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-
-  // 🔔 Call FCM on load (after login)
-  useEffect(() => {
-    if (loggedIn) {
-      requestPermission();
-      listenForMessages();
-    }
-  }, [loggedIn]);
 
   return (
     <SettingsProvider>

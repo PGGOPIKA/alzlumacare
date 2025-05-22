@@ -1,61 +1,127 @@
 .medicare-container {
-    background-image: url('./assets/medicare.png'); /* path to your image */
-    background-size: cover;
-    background-position: center;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .medicare-overlay {
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 47, 104, 0.4); /* bluish overlay */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .medicare-title {
-    color: white;
-    font-size: 3rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px #000;
-  }
-  
-  .clock-center {
-    width: 250px;
-    height: 250px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    margin: 20px 0;
-    border: 4px solid black;
-    position: relative;
-  }
-  
-  .reminder-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 30px;
-  }
-  
-  .reminder-buttons button {
-    padding: 15px 25px;
-    font-size: 1rem;
-    background-color: #0b5394;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: 0.3s ease;
-  }
-  
-  .reminder-buttons button:hover {
-    background-color: #073763;
-  }
-  
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.medicare-overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 47, 104, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.medicare-title {
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px #000;
+}
+
+.clock-center {
+  width: 250px;
+  height: 250px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  margin: 20px 0;
+  border: 4px solid black;
+  position: relative;
+}
+
+.reminder-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.reminder-buttons button {
+  padding: 15px 25px;
+  font-size: 1rem;
+  background-color: #0b5394;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.3s ease;
+}
+
+.reminder-buttons button:hover {
+  background-color: #073763;
+}
+
+/* Inputs area styling */
+.inputs-area {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.inputs-area input[type="time"] {
+  margin-left: 8px;
+  padding: 4px 6px;
+}
+
+/* Reminder container fixed position */
+.reminder-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 1000;
+}
+
+/* Reminder box styling (single style with modifiers) */
+.reminder-box {
+  padding: 15px 25px;
+  background-color: rgba(11, 83, 148, 0.9); /* blue with opacity */
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  min-width: 250px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Variations for different reminder types */
+.medication-reminder {
+  background-color: #0b5394;
+}
+
+.food-reminder {
+  background-color: #4a90e2;
+}
+
+/* On-screen reminder box inside the content */
+.reminder-box.inline {
+  margin-top: 40px;
+  padding: 20px 30px;
+  background: rgba(255, 255, 255, 0.85);
+  border-left: 6px solid #0b5394;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+  font-size: 1.1rem;
+  color: #002f68;
+  font-weight: 600;
+  text-align: center;
+}
+
+.reminder-box.inline p {
+  margin: 0.4em 0;
+}
+
+/* Just in case you want distinct margin or style for the inline version */

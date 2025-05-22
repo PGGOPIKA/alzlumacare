@@ -1,39 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import './LifeTrack.css'; // Make sure this file contains background styling
-import LifeTrackimage from './assets/lifetrack.png'; // Import the image
+import { io } from 'socket.io-client';
+import './LifeTrack.css'; 
+import LifeTrackimage from './assets/lifetrack.png'; 
+
+const socket = io('http://localhost:3000'); // Change to your backend URL & port
 
 const LifeTrack = () => {
   const [sensorData, setSensorData] = useState({
-    gsr: 0,
-    accelerometer: { x: 0, y: 0, z: 0 },
-    gyroscope: { x: 0, y: 0, z: 0 },
-    heartRate: 0,
-    temperature: 0,
-    spo2: 0,
+    heartRate: '--',
+    spo2: '--',
+    temperature: '--',
+    gsr: '--',
+    accelerometer: { x: '--', y: '--', z: '--' },
+    gyroscope: { x: '--', y: '--', z: '--' },
   });
 
-  // Simulating sensor data update
   useEffect(() => {
-    const interval = setInterval(() => {
+    // Listen for 'sensorData' event from backend
+    socket.on('sensorData', (data) => {
       setSensorData({
-        gsr: (Math.random() * 100).toFixed(2),
+        heartRate: data.heartRate ?? '--',
+        spo2: data.spo2 ? data.spo2.toFixed(1) : '--',
+        temperature: data.tempC ? data.tempC.toFixed(2) : '--',
+        gsr: data.gsr ?? '--',
         accelerometer: {
-          x: (Math.random() * 10 - 5).toFixed(2),
-          y: (Math.random() * 10 - 5).toFixed(2),
-          z: (Math.random() * 10 - 5).toFixed(2),
+          x: data.accelX ? data.accelX.toFixed(2) : '--',
+          y: data.accelY ? data.accelY.toFixed(2) : '--',
+          z: data.accelZ ? data.accelZ.toFixed(2) : '--',
         },
         gyroscope: {
-          x: (Math.random() * 360).toFixed(2),
-          y: (Math.random() * 360).toFixed(2),
-          z: (Math.random() * 360).toFixed(2),
+          x: data.gyroX ? data.gyroX.toFixed(2) : '--',
+          y: data.gyroY ? data.gyroY.toFixed(2) : '--',
+          z: data.gyroZ ? data.gyroZ.toFixed(2) : '--',
         },
-        heartRate: Math.floor(Math.random() * 40 + 60),
-        temperature: (Math.random() * 2 + 36).toFixed(1),
-        spo2: Math.floor(Math.random() * 5 + 95),
       });
-    }, 2000);
+    });
 
-    return () => clearInterval(interval);
+    // Clean up on unmount
+    return () => {
+      socket.off('sensorData');
+    };
   }, []);
 
   return (
@@ -41,15 +47,7 @@ const LifeTrack = () => {
       <h1 className="life-track-title">LIFE TRACK</h1>
 
       <div className="sensor-line">
-        <label>Heart Rate:</label> <strong>{sensorData.heartRate} bpm</strong>
-      </div>
-
-      <div className="sensor-line">
-        <label>Temperature:</label> <strong>{sensorData.temperature} °C</strong>
-      </div>
-
-      <div className="sensor-line">
-        <label>GSR:</label> <strong>{sensorData.gsr}</strong>
+        <label>Heart Rate:</label> <strong>{sensorData.heartRate} BPM</strong>
       </div>
 
       <div className="sensor-line">
@@ -57,17 +55,31 @@ const LifeTrack = () => {
       </div>
 
       <div className="sensor-line">
-        <label>Accelerometer (X, Y, Z):</label>{' '}
-        <strong>
-          {sensorData.accelerometer?.x ?? '...'}, {sensorData.accelerometer?.y ?? '...'}, {sensorData.accelerometer?.z ?? '...'}
-        </strong>
+        <label>Body Temp:</label> <strong>{sensorData.temperature} °C</strong>
       </div>
 
       <div className="sensor-line">
-        <label>Gyroscope (X, Y, Z):</label>{' '}
-        <strong>
-          {sensorData.gyroscope?.x ?? '...'}, {sensorData.gyroscope?.y ?? '...'}, {sensorData.gyroscope?.z ?? '...'}
-        </strong>
+        <label>GSR:</label> <strong>{sensorData.gsr}</strong>
+      </div>
+
+      <div className="sensor-line">
+        <label>Accel X:</label> <strong>{sensorData.accelerometer.x}</strong>
+      </div>
+      <div className="sensor-line">
+        <label>Accel Y:</label> <strong>{sensorData.accelerometer.y}</strong>
+      </div>
+      <div className="sensor-line">
+        <label>Accel Z:</label> <strong>{sensorData.accelerometer.z}</strong>
+      </div>
+
+      <div className="sensor-line">
+        <label>Gyro X:</label> <strong>{sensorData.gyroscope.x}</strong>
+      </div>
+      <div className="sensor-line">
+        <label>Gyro Y:</label> <strong>{sensorData.gyroscope.y}</strong>
+      </div>
+      <div className="sensor-line">
+        <label>Gyro Z:</label> <strong>{sensorData.gyroscope.z}</strong>
       </div>
     </div>
   );
